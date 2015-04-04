@@ -32,7 +32,7 @@ app.controller('UserListCtrl', ['$scope', 'UsersFactory', 'UserFactory', '$locat
 
         // callback for ng-click 'deleteUser':
         $scope.deleteUser = function (userId) {
-            UserFactory.delete({ id: userId });
+            UserFactory.remove({ id: userId });
             $scope.users = UsersFactory.query();
         };
 

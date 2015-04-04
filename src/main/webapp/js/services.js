@@ -34,6 +34,6 @@ services.factory('UserFactory', function ($resource) {
     return $resource('/ngdemo/web/users/:id', {}, {
         show: { method: 'GET' },
         update: { method: 'PUT', params: {id: '@id'} },
-        delete: { method: 'DELETE', params: {id: '@id'} }
+        remove: { method: 'DELETE', params: {id: '@id'} }
     })
 });
