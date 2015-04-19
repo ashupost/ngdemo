@@ -2,19 +2,23 @@ package ngdemo.tests.integration.web;
 
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
+
 import ngdemo.domain.User;
 import ngdemo.tests.integration.web.infrastructure.ClientProvider;
 import ngdemo.tests.integration.web.infrastructure.ServerProvider;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import javax.ws.rs.core.MediaType;
+
 import java.io.IOException;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
+@SuppressWarnings("deprecation")
 public class UserRestServiceTest {
 
     private final ServerProvider serverProvider;
@@ -38,7 +42,8 @@ public class UserRestServiceTest {
     }
 
 
-    @Test
+   
+	@Test
     public void testGetAllUsersShouldReturnSuccessStatus() throws IOException {
         ClientResponse resp = webService.path("web").path("users")
                 .accept(MediaType.APPLICATION_JSON)
