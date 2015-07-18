@@ -13,16 +13,14 @@ app.run(function($rootScope, $templateCache) {
 	});
 });
 
-app.controller('DummyCtrl', [ '$scope', 'DummyFactory',
-		function($scope, DummyFactory) {
+app.controller('DummyCtrl', [ '$scope', 'DummyFactory', function($scope, DummyFactory) {
 			$scope.bla = 'bla from controller';
 			DummyFactory.get({}, function(dummyFactory) {
 				$scope.firstname = dummyFactory.firstName;
 			})
 		} ]);
 
-app.controller('UserListCtrl', [ '$scope', 'UsersFactory', 'UserFactory',
-		'$location', function($scope, UsersFactory, UserFactory, $location) {
+app.controller('UserListCtrl', [ '$scope', 'UsersFactory', 'UserFactory', '$location', function($scope, UsersFactory, UserFactory, $location) {
 
 			// callback for ng-click 'editUser':
 			$scope.editUser = function(userId) {
@@ -30,6 +28,7 @@ app.controller('UserListCtrl', [ '$scope', 'UsersFactory', 'UserFactory',
 			};
 
 			// callback for ng-click 'deleteUser':
+			// Delete the user from user list and refresh the page with query
 			$scope.deleteUser = function(userId) {
 				UserFactory.remove({
 					id : userId
@@ -45,8 +44,7 @@ app.controller('UserListCtrl', [ '$scope', 'UsersFactory', 'UserFactory',
 			$scope.users = UsersFactory.query();
 		} ]);
 
-app.controller('UserDetailCtrl', [ '$scope', '$routeParams', 'UserFactory',
-		'$location', function($scope, $routeParams, UserFactory, $location) {
+app.controller('UserDetailCtrl', [ '$scope', '$routeParams', 'UserFactory', '$location', function($scope, $routeParams, UserFactory, $location) {
 
 			// callback for ng-click 'updateUser':
 			$scope.updateUser = function() {
@@ -59,16 +57,13 @@ app.controller('UserDetailCtrl', [ '$scope', '$routeParams', 'UserFactory',
 				$location.path('/user-list');
 			};
 
-			$scope.user = UserFactory.show({
-				id : $routeParams.id
-			});
+			$scope.user = UserFactory.show({id : $routeParams.id });
 		} ]);
 
-app.controller('UserCreationCtrl', [ '$scope', 'UsersFactory', '$location',
-		function($scope, UsersFactory, $location) {
+app.controller('UserCreationCtrl', [ '$scope', 'UsersFactory', '$location', function($scope, UsersFactory, $location) {
 			// callback for ng-click 'createNewUser':
 			$scope.createNewUser = function() {
-				UsersFactory.create($scope.user);
+				UsersFactory.createUser($scope.user);
 				$location.path('/user-list');
 			}
 		} ]);

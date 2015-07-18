@@ -4,15 +4,12 @@
 
 /*
  http://docs.angularjs.org/api/ngResource.$resource
-
  Default ngResources are defined as
-
  'get':    {method:'GET'},
  'save':   {method:'POST'},
  'query':  {method:'GET', isArray:true},
  'remove': {method:'DELETE'},
  'delete': {method:'DELETE'}
-
  */
 
 var services = angular.module('ngdemo.services', ['ngResource']);
@@ -26,7 +23,7 @@ services.factory('DummyFactory', function ($resource) {
 services.factory('UsersFactory', function ($resource) {
     return $resource('/ngdemo/web/users', {}, {
         query: { method: 'GET', isArray: true },
-        create: { method: 'POST' }
+        createUser: { method: 'POST' }
     })
 });
 
@@ -37,3 +34,4 @@ services.factory('UserFactory', function ($resource) {
         remove: { method: 'DELETE', params: {id: '@id'} }
     })
 });
+
