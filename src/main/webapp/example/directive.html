@@ -1,19 +1,20 @@
+<!DOCTYPE html>
 <html>
-   
-   <head>
-      <title>Angular JS Custom Directives</title>
-   </head>
-   
-   <body>
-      <h2>AngularJS Sample Application</h2>
-      
-      <div ng-app = "mainApp" ng-controller = "StudentController">
-         <student name = "Mahesh"></student><br/>
-         <student name = "Piyush"></student>
-      </div>
-		<script src="/ngdemo/lib/angular/angular.js"></script>
-      
-      <script>
+<head>
+<title>Angular JS Custom Directives</title>
+</head>
+
+<body>
+	<h2>AngularJS Sample Application</h2>
+	
+	<div ng-app="mainApp" ng-controller="StudentController">
+		<student name="Mahesh"></student>
+		<br />
+		<student name="Piyush"></student>
+	</div>
+	<script src="/ngdemo/lib/angular/angular.js"></script>
+
+	<script>
          var mainApp = angular.module("mainApp", []);
          
          mainApp.directive('student', function() {
@@ -25,9 +26,9 @@
                student : "=name"
             }
             
-            directive.compile = function(element, attributes) {
+            directive.compile = function(element, attributes,ctrl) {
                element.css("border", "1px solid blue");
-               
+               console.log('ctrl',ctrl);
                var linkFunction = function($scope, element, attributes) {
                   element.html("Student: <b>"+$scope.student.name +"</b> , Roll No: <b>"+$scope.student.rollno+"</b><br/>");
                   element.css("background-color", "green");
@@ -49,6 +50,6 @@
          });
 			
       </script>
-      
-   </body>
+
+</body>
 </html>
